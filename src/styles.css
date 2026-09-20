@@ -1,0 +1,292 @@
+:root {
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #171717;
+  background: #f4f4f1;
+  font-synthesis: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.app-shell {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 280px minmax(0, 1fr);
+}
+
+.sidebar {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  padding: 28px 20px 20px;
+  background: #191919;
+  color: #f6f6f2;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.sidebar h1,
+.topbar h2 {
+  margin: 4px 0 8px;
+}
+
+.eyebrow {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 11px;
+  font-weight: 700;
+  opacity: 0.65;
+}
+
+.muted {
+  color: #737373;
+  line-height: 1.5;
+}
+
+.sidebar .muted {
+  color: #a3a3a3;
+  font-size: 14px;
+}
+
+nav {
+  display: grid;
+  gap: 4px;
+}
+
+.nav-item {
+  border: 0;
+  background: transparent;
+  color: #bdbdb8;
+  padding: 10px 12px;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 6px;
+}
+
+.nav-item:hover,
+.nav-item.active {
+  background: #2a2a29;
+  color: white;
+}
+
+.count {
+  font-variant-numeric: tabular-nums;
+  opacity: 0.6;
+  font-size: 12px;
+}
+
+.sidebar-footer {
+  margin-top: auto;
+  display: grid;
+  gap: 14px;
+}
+
+.progress {
+  display: grid;
+  gap: 7px;
+  color: #a3a3a3;
+  font-size: 12px;
+}
+
+progress {
+  width: 100%;
+}
+
+main {
+  min-width: 0;
+}
+
+.topbar {
+  padding: 28px 36px 20px;
+  border-bottom: 1px solid #deded8;
+  display: flex;
+  gap: 24px;
+  justify-content: space-between;
+  align-items: flex-start;
+  background: rgba(244, 244, 241, 0.96);
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.actions button,
+.ghost {
+  border: 1px solid #cfcfc8;
+  background: #181818;
+  color: white;
+  padding: 9px 12px;
+  border-radius: 5px;
+}
+
+.actions .ghost,
+.ghost {
+  background: transparent;
+  color: inherit;
+}
+
+.sidebar .ghost {
+  color: #d5d5d0;
+  border-color: #3a3a38;
+}
+
+.danger:hover {
+  color: #ffb4b4;
+}
+
+.question-list {
+  max-width: 1080px;
+  padding: 10px 36px 80px;
+}
+
+.question {
+  display: grid;
+  grid-template-columns: minmax(180px, 0.8fr) minmax(320px, 1.8fr);
+  gap: 40px;
+  padding: 28px 0;
+  border-bottom: 1px solid #deded8;
+}
+
+.question-copy label {
+  display: block;
+  font-weight: 650;
+  line-height: 1.35;
+}
+
+.question-copy p {
+  margin: 8px 0 0;
+  color: #76766f;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.field-stack {
+  display: grid;
+  gap: 9px;
+}
+
+input,
+textarea,
+select {
+  width: 100%;
+  border: 1px solid #c9c9c1;
+  background: #fff;
+  color: #171717;
+  border-radius: 4px;
+  padding: 11px 12px;
+  outline: none;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 94px;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: #54544e;
+  box-shadow: 0 0 0 2px rgba(20, 20, 20, 0.08);
+}
+
+.status-row {
+  display: flex;
+  gap: 6px;
+}
+
+.status {
+  border: 1px solid #d1d1ca;
+  background: transparent;
+  color: #73736c;
+  border-radius: 999px;
+  padding: 5px 8px;
+  font-size: 11px;
+}
+
+.status.active {
+  background: #e5e5df;
+  color: #151515;
+  border-color: #afafa7;
+}
+
+.json-panel {
+  padding: 24px 36px 80px;
+}
+
+pre {
+  margin: 0;
+  background: #171717;
+  color: #e8e8e2;
+  border-radius: 6px;
+  padding: 20px;
+  overflow: auto;
+  font: 12px/1.55 "SFMono-Regular", Consolas, monospace;
+}
+
+@media (max-width: 900px) {
+  .app-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    position: static;
+    height: auto;
+  }
+
+  nav {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .topbar {
+    position: static;
+    flex-direction: column;
+  }
+
+  .actions {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 650px) {
+  .question {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .topbar,
+  .question-list,
+  .json-panel {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  nav {
+    grid-template-columns: 1fr;
+  }
+}
