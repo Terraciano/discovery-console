@@ -11,6 +11,10 @@ The purpose is to capture a human discovery conversation in a structured format 
 ```text
 public information
       ↓
+Discovery Console → Demo prompt
+      ↓
+Tasteful Landings generate mode
+      ↓
 one-shot demo repo
       ↓
 client likes demo / accepts price
@@ -29,6 +33,26 @@ production-ready site
 ```
 
 ## What it does
+
+### Pre-discovery demo prompt
+
+The first section is a demo-prompt generator for the cold / first-contact stage.
+
+Capture only what is publicly known:
+- prospect/company
+- current website
+- industry/subcategory
+- geography
+- useful public context
+- what the demo should prove
+- identity cues worth preserving
+- directions to avoid
+- desired demo repository name
+
+The console generates a prompt for the Tasteful Landings harness in **generate mode**.
+
+These pre-discovery fields are deliberately excluded from `client-brief.json`; they are hypotheses, not confirmed client facts.
+
 
 - structured discovery sections
 - free text and select inputs

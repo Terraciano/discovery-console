@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { sections } from "./questions";
 import type { Answer, AnswerValue, DiscoveryState, EvidenceStatus, Question } from "./types";
-import { buildHarnessJson, buildMarkdown, downloadText } from "./export";
+import { buildDemoPrompt, buildHarnessJson, buildMarkdown, downloadText } from "./export";
 
 const STORAGE_KEY = "discovery-console:v1";
 
@@ -36,6 +36,7 @@ function App() {
   }, [state]);
 
   const json = useMemo(() => buildHarnessJson(state), [state]);
+  const demoPrompt = useMemo(() => buildDemoPrompt(state), [state]);
 
   const answered = useMemo(() => {
     return Object.values(state.answers).filter((answer) => {
@@ -78,6 +79,10 @@ function App() {
 
   const copyJson = async () => {
     await navigator.clipboard.writeText(JSON.stringify(json, null, 2));
+  };
+
+  const copyDemoPrompt = async () => {
+    await navigator.clipboard.writeText(demoPrompt);
   };
 
   const section = sections.find((item) => item.id === activeSection) ?? sections[0];
@@ -128,42 +133,58 @@ function App() {
       <main>
         <header className="topbar">
           <div>
-            <p className="eyebrow">Discovery call</p>
+            <p className="eyebrow">{section.id === "demoPrompt" ? "First-contact demo" : "Discovery call"}</p>
             <h2>{section.title}</h2>
             {section.description && <p className="muted">{section.description}</p>}
           </div>
 
           <div className="actions">
-            <button className="ghost" onClick={() => setShowJson((value) => !value)}>
-              {showJson ? "Hide JSON" : "Preview JSON"}
-            </button>
-            <button className="ghost" onClick={copyJson}>Copy JSON</button>
-            <button
-              onClick={() =>
-                downloadText(
-                  "client-brief.json",
-                  JSON.stringify(json, null, 2),
-                  "application/json",
-                )
-              }
-            >
-              Download JSON
-            </button>
-            <button
-              onClick={() =>
-                downloadText("CLIENT_BRIEF.md", buildMarkdown(state), "text/markdown")
-              }
-            >
-              Download MD
-            </button>
+            {section.id === "demoPrompt" ? (
+              <>
+                <button className="ghost" onClick={copyDemoPrompt}>Copy demo prompt</button>
+                <button
+                  onClick={() =>
+                    downloadText("DEMO_PROMPT.md", demoPrompt, "text/markdown")
+                  }
+                >
+                  Download prompt
+                </button>
+              </>
+            ) : (
+              <>
+                <button className="ghost" onClick={() => setShowJson((value) => !value)}>
+                  {showJson ? "Hide JSON" : "Preview JSON"}
+                </button>
+                <button className="ghost" onClick={copyJson}>Copy JSON</button>
+                <button
+                  onClick={() =>
+                    downloadText(
+                      "client-brief.json",
+                      JSON.stringify(json, null, 2),
+                      "application/json",
+                    )
+                  }
+                >
+                  Download JSON
+                </button>
+                <button
+                  onClick={() =>
+                    downloadText("CLIENT_BRIEF.md", buildMarkdown(state), "text/markdown")
+                  }
+                >
+                  Download MD
+                </button>
+              </>
+            )}
           </div>
         </header>
 
-        {showJson ? (
+        {showJson && section.id !== "demoPrompt" ? (
           <section className="json-panel">
             <pre>{JSON.stringify(json, null, 2)}</pre>
           </section>
         ) : (
+          <>
           <section className="question-list">
             {section.questions.map((question) => {
               const answer = state.answers[question.id] ?? defaultAnswer(question);
@@ -228,6 +249,19 @@ function App() {
               );
             })}
           </section>
+          {section.id === "demoPrompt" && (
+            <section className="prompt-panel">
+              <div className="prompt-heading">
+                <div>
+                  <p className="eyebrow">Generated harness input</p>
+                  <h3>Demo prompt</h3>
+                </div>
+                <button className="ghost" onClick={copyDemoPrompt}>Copy</button>
+              </div>
+              <pre>{demoPrompt}</pre>
+            </section>
+          )}
+          </>
         )}
       </main>
     </div>
