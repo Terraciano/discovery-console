@@ -1,0 +1,127 @@
+import type { Section } from "./types";
+
+const yesNo = [
+  { label: "Yes", value: "yes" },
+  { label: "No", value: "no" },
+  { label: "Not sure", value: "unknown" },
+];
+
+export const sections: Section[] = [
+  {
+    id: "project",
+    title: "Project",
+    description: "Connect this discovery to the existing one-shot demo.",
+    questions: [
+      { id: "project.brandName", label: "Brand / company name", type: "text" },
+      { id: "project.demoRepository", label: "Existing demo repository", type: "text", placeholder: "owner/repo" },
+      { id: "project.demoUrl", label: "Current demo URL", type: "text", placeholder: "https://..." },
+      { id: "project.realBusiness", label: "Real client business?", type: "select", options: yesNo },
+      { id: "project.industry", label: "Industry", type: "text" },
+      { id: "project.subcategory", label: "Exact subcategory", type: "text", help: "Be more specific than aviation / wine / real estate." },
+      { id: "project.geography", label: "Primary geography / market", type: "text" },
+    ],
+  },
+  {
+    id: "business",
+    title: "Business",
+    questions: [
+      { id: "business.whatTheySell", label: "What do they actually sell?", type: "textarea" },
+      { id: "business.primaryOffer", label: "Primary offer to prioritize", type: "textarea" },
+      { id: "business.otherOffers", label: "Secondary offers", type: "textarea" },
+      { id: "business.typicalValue", label: "Typical transaction / project value", type: "text", help: "Range is enough. Leave unknown if sensitive." },
+      { id: "business.salesProcess", label: "How does a customer normally buy?", type: "textarea" },
+      { id: "business.differentiators", label: "Why do clients choose them?", type: "textarea" },
+    ],
+  },
+  {
+    id: "audience",
+    title: "Audience",
+    questions: [
+      { id: "audience.primaryBuyer", label: "Primary buyer", type: "textarea" },
+      { id: "audience.secondaryBuyer", label: "Secondary buyer / gatekeepers", type: "textarea" },
+      { id: "audience.buyerKnowledge", label: "How knowledgeable is the buyer?", type: "textarea" },
+      { id: "audience.objections", label: "Typical objections / anxieties", type: "textarea" },
+      { id: "audience.referralContext", label: "How much business comes from referrals / relationships?", type: "textarea" },
+    ],
+  },
+  {
+    id: "brand",
+    title: "Brand & identity",
+    description: "Capture what should be preserved, not just what should change.",
+    questions: [
+      { id: "brand.originStory", label: "Origin / founder / company story", type: "textarea" },
+      { id: "brand.mustPreserve", label: "What must not be lost in the redesign?", type: "textarea" },
+      { id: "brand.currentProblem", label: "What feels wrong about the current presence?", type: "textarea" },
+      { id: "brand.desiredPerception", label: "How should someone describe them after seeing the site?", type: "textarea" },
+      { id: "brand.avoidPerception", label: "What should the site never feel like?", type: "textarea", placeholder: "tech startup, nightclub luxury, corporate, cheap..." },
+      { id: "brand.admiredBrands", label: "Brands / websites they admire", type: "textarea" },
+      { id: "brand.dislikedBrands", label: "Brands / websites they dislike", type: "textarea" },
+      { id: "brand.wordsToUse", label: "Words / expressions native to the business", type: "textarea" },
+      { id: "brand.wordsToAvoid", label: "Words / clichés to avoid", type: "textarea" },
+    ],
+  },
+  {
+    id: "trust",
+    title: "Trust & proof",
+    questions: [
+      { id: "trust.years", label: "Years in business", type: "text" },
+      { id: "trust.credentials", label: "Credentials / licenses / memberships", type: "textarea" },
+      { id: "trust.numbers", label: "Approved numbers / statistics we may publish", type: "textarea" },
+      { id: "trust.clients", label: "Approved customers / logos / partners", type: "textarea" },
+      { id: "trust.testimonials", label: "Approved testimonials", type: "textarea" },
+      { id: "trust.press", label: "Press / awards / recognition", type: "textarea" },
+      { id: "trust.otherProof", label: "Other proof an informed buyer cares about", type: "textarea" },
+    ],
+  },
+  {
+    id: "website",
+    title: "Website",
+    questions: [
+      { id: "website.primaryGoal", label: "Primary website goal", type: "textarea" },
+      { id: "website.primaryCta", label: "Primary CTA", type: "text" },
+      { id: "website.secondaryCtas", label: "Secondary actions", type: "textarea" },
+      { id: "website.requiredSections", label: "Required pages / sections", type: "textarea" },
+      { id: "website.mustKeepFromDemo", label: "What from the demo should definitely stay?", type: "textarea" },
+      { id: "website.changeFromDemo", label: "What should change from the demo?", type: "textarea" },
+      { id: "website.integrations", label: "Forms / booking / CRM / integrations", type: "textarea" },
+      { id: "website.languages", label: "Languages", type: "text" },
+    ],
+  },
+  {
+    id: "content",
+    title: "Content & assets",
+    questions: [
+      { id: "content.logo", label: "Logo available?", type: "select", options: yesNo },
+      { id: "content.brandGuidelines", label: "Brand guidelines available?", type: "select", options: yesNo },
+      { id: "content.photos", label: "Photography available?", type: "textarea", help: "What exists, who owns it, quality, gaps." },
+      { id: "content.video", label: "Video available?", type: "textarea" },
+      { id: "content.existingCopy", label: "Existing copy / brochures / PDFs / decks", type: "textarea" },
+      { id: "content.assetLocation", label: "Where will assets be shared?", type: "text" },
+    ],
+  },
+  {
+    id: "operations",
+    title: "Domain, ownership & launch",
+    questions: [
+      { id: "operations.domain", label: "Domain", type: "text" },
+      { id: "operations.domainOwner", label: "Who owns / controls the domain?", type: "text" },
+      { id: "operations.dnsProvider", label: "DNS / registrar", type: "text" },
+      { id: "operations.dnsAccess", label: "Can client provide DNS access / make records?", type: "select", options: yesNo },
+      { id: "operations.formDestination", label: "Where should inquiries go?", type: "text" },
+      { id: "operations.analytics", label: "Analytics required?", type: "textarea" },
+      { id: "operations.legal", label: "Privacy / imprint / legal requirements", type: "textarea" },
+      { id: "operations.launchConstraint", label: "Launch date / hard constraints", type: "textarea" },
+      { id: "operations.ownershipNotes", label: "Ownership / handoff expectations", type: "textarea" },
+    ],
+  },
+  {
+    id: "constraints",
+    title: "Constraints & loose ends",
+    questions: [
+      { id: "constraints.nonNegotiables", label: "Non-negotiables", type: "textarea" },
+      { id: "constraints.outOfScope", label: "Explicitly out of scope", type: "textarea" },
+      { id: "constraints.openQuestions", label: "Questions still open after the call", type: "textarea" },
+      { id: "constraints.privateNotes", label: "Private/internal notes for refinement", type: "textarea" },
+    ],
+  },
+];
