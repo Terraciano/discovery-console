@@ -8,6 +8,24 @@ const yesNo = [
 
 export const sections: Section[] = [
   {
+    id: "demoPrompt",
+    title: "Demo prompt",
+    description: "Pre-discovery input. Use public information to generate the first one-shot demo.",
+    questions: [
+      { id: "demo.companyName", label: "Prospect / company name", type: "text" },
+      { id: "demo.websiteUrl", label: "Current public website", type: "text", placeholder: "https://..." },
+      { id: "demo.industry", label: "Industry", type: "text" },
+      { id: "demo.subcategory", label: "Best-known subcategory", type: "text", help: "Leave broad if public information is not enough; the harness must research it." },
+      { id: "demo.geography", label: "Primary geography / market", type: "text" },
+      { id: "demo.publicContext", label: "Useful public context you already know", type: "textarea", help: "Products, services, story, reputation, positioning. Only public or clearly inferred information." },
+      { id: "demo.demoGoal", label: "What should this demo prove?", type: "textarea", placeholder: "Example: make the brokerage feel more discreet and specialist without turning it into a tech startup." },
+      { id: "demo.mustPreserve", label: "Identity cues worth preserving", type: "textarea", help: "Only if visible publicly: heritage, local character, specialist tone, architecture, product focus, etc." },
+      { id: "demo.avoid", label: "Visual / positioning directions to avoid", type: "textarea", placeholder: "SaaS, tech-plastic, black-and-gold luxury cliché..." },
+      { id: "demo.targetRepository", label: "Desired demo repository name", type: "text", placeholder: "landing-brand-slug" },
+      { id: "demo.extraInstructions", label: "Extra instructions", type: "textarea" }
+    ],
+  },
+  {
     id: "project",
     title: "Project",
     description: "Connect this discovery to the existing one-shot demo.",
